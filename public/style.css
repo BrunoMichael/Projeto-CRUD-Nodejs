@@ -1,0 +1,403 @@
+/* FOLHA DE ESTILO DO SITE
+
+CONFIGURAÇÃO PADRÃO PARA RESETAR ESTILO DO HTML PADRÃO */
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* CONFIGURAÇÃO PARA FIXAR O FOOTER NO BOTTOM INDEPENDENTE DO TAMANHO DA PÁGINA */
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 35px;
+}
+
+/* CONFIGURAÇÃO PARA DEIXAR O SITE COM PADRÃO DE MARGENS PARA RESPONSIVIDADE FUTURA */
+.center{
+    max-width: 1280px;
+    margin:0 auto;
+    padding:0 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content{
+    max-width: 1280px;
+    margin:0 auto;
+    padding:0 2%;
+}
+
+/* HEADER  */
+header{
+    padding:8px 0;
+    background-color: #0f3975;
+    text-align: center;
+}
+
+.logo{
+    text-align: left;
+    width:50%;
+}
+
+.logo h2{
+    color:white;
+
+}
+
+.logo a{
+    color:white;
+    text-decoration: none;
+}
+
+/* PRELOADING E LOADING DE FORMS */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; 
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid blue;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ALERTAS */
+.alert{
+    background-color: #c4c4c4;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 80px;
+    font-weight: 600;
+}
+
+.alert-box {
+    position: fixed;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    background-color: #1f911f;
+    color: white;
+    z-index: 1001;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.alert-box.error {
+    background-color: red;
+}
+
+/* CONFIGURAÇÕES DE CORES */
+.edit {
+    background-color: #d4b60b;
+}
+
+.delete {
+    background-color: #f44336;
+}
+
+.active {
+    background-color: #008CBA;
+}
+
+.disabled{
+    background-color: #b4b4b4;
+}
+
+.color-success{
+    background-color: #6dcc60;
+}
+
+.color-warning{
+    background-color: #f7df74;
+}
+
+/* TABELA DE DADOS */
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #0f3975;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0f3975;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0f3975;
+}
+
+/* DEMAIS ESTILOS */
+.header-config {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.titulo-config {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.esp-new-button-config{
+    text-align: right;
+}
+
+/* BUTTONS */
+.btn-new-config {
+    background-color: #4daf40;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-new-config i {
+    margin-right: 5px;
+}
+
+.btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+/* MODAL DE CADASTRO */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    overflow: auto;
+    max-height: 80vh;
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    border-radius: 10px 0 0 10px;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 4px; 
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.closeBtn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.modal button {
+    background-color: #0f3975;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.modal button:hover {
+    background-color: #2862a0;
+}
+
+/* FOOTER */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+    background-color: #0f3975;
+    text-align: center;
+    color: white;
+    padding: 8px 0;
+}
+/* RESPONSIVIDADE GLOBAL  */
+@media only screen and (max-width: 600px) {
+    .header-config {
+        flex-direction: column-reverse;
+    }
+
+    .titulo-config {
+        width: 100%;
+        text-align: center;
+    }
+
+    .esp-new-button-config {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .styled-table {
+        width: 100%;
+        display: block;
+    }
+
+    .styled-table thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    .styled-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    .styled-table tr {
+        border: 1px solid #ccc;
+        margin-bottom: 0.625em;
+    }
+
+    .styled-table td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    .styled-table td:before {
+        /* Adicionar um seletor de conteúdo para criar um rótulo para cada célula */
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 800px) {
+    .modal-content {
+        width: 60%; 
+        margin: 10px auto;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1000px) {
+    .modal-content {
+        width: 50%; 
+        margin: 10px auto;
+    }
+}
+
+@media (min-width: 1001px) and (max-width: 1200px) {
+    .modal-content {
+        width: 40%; 
+        margin: 10px auto;
+    }
+}

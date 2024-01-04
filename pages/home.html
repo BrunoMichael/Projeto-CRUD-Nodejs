@@ -1,0 +1,109 @@
+
+        <%- include('partials/header.html') %>
+        <div id="loadingScreen" class="loading-screen" style="display:none;">
+            <div class="loading-spinner"></div>
+        </div>
+        
+        <div class="content">
+            <div class="header-config">
+                <h2 class="titulo-config">Lista de Configurações</h2>
+                <div class="esp-new-button-config">
+                    <button id="openModalBtn" class="btn-new-config">
+                        <i class="fa fa-plus"></i> Nova Configuração
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="closeBtn">&times;</span>
+                <form id="configForm" onsubmit="event.preventDefault(); handleSubmit();">
+                    <input type="hidden" id="configId" name="configId">
+
+                    <label for="titulo">Título do site:</label>
+                    <input type="text" id="titulo" name="titulo" value=""><br><br>
+
+                    <label for="logoescrita">Logo escrita:</label>
+                    <input type="text" id="logoescrita" name="logoescrita" value=""><br><br>
+
+                    <label for="logoescritanegrito">Logo escrita em negrito:</label>
+                    <input type="text" id="logoescritanegrito" name="logoescritanegrito" value=""><br><br>
+
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" value=""><br><br>
+
+                    <label for="status">Token:</label>
+                    <input type="text" id="token" name="token" value=""><br><br>
+                    
+                    <center>
+                        <button type="button" id="cancelBtn">Cancelar</button>
+                        <button type="submit" id="botaoSubmit">Inserir</button>
+                    </center>
+                </form>
+            </div>
+        </div>
+
+        <div id="alertBox" class="alert-box" style="display:none;"></div>
+
+        <div class="content"> 
+            <div class="table-container">
+                <table class="styled-table" id="tabela-configs">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Logo Escrita</th>
+                            <th>Descrição</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% configs.forEach(function(config) { %>
+                            <tr id="linha-config-<%= config.id %>">
+                                <td data-label="ID"><%= config.id %></td>
+                                <td data-label="Título"><%= config.titulo %></td>
+                                <td data-label="Logo Escrita"><%= config.logoescrita %><b><%= config.logoescritanegrito %></b></td>
+                                <td data-label="Descrição"><%= config.descricao %></td>
+                                <td data-label="Status"><span class="alert <%= config.status === 'Ativo' ? 'color-success' : 'color-error' %>"><%= config.status %></span></td>
+                                <td data-label="Ações">
+                                    <button class="btn edit" data-id="<%= config.id %>" onclick="abrirModalEdicao(this)"><i class="fa fa-edit"></i></button>
+                                    <button class="btn <%= config.status === 'Ativo' ? 'disabled' : 'delete' %>" data-id="<%= config.id %>" onclick="confirmarDelete(this)" <%= config.status === 'Ativo' ? 'disabled' : '' %>><i class="fa fa-trash"></i></button>
+                                    <button class="btn <%= config.status === 'Ativo' ? 'disabled' : 'active' %>" data-id="<%= config.id %>" onclick="tornarAtivo(this)" <%= config.status === 'Ativo' ? 'disabled' : '' %>><i class="fa fa-check"></i></button>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                    
+                </table>
+            </div> 
+        </div> 
+
+        <%- include('partials/footer.html') %>
+        <script src="/public/functions.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+
+            socket.on('configuracoesAtualizadas', (mensagem) => {
+                showAlert(mensagem, 'info');
+            });
+
+            socket.on('configDeleted', function(configId) {
+                var elementoParaRemover = document.getElementById('linha-config-' + configId);
+                if (elementoParaRemover) {
+                    elementoParaRemover.remove();
+                }
+            });
+
+            socket.on('configAdded', function() {
+                location.reload();
+            });
+
+            socket.on('configUpdated', function() {
+                location.reload();
+            });
+        </script>
+    </body>
+</html>
